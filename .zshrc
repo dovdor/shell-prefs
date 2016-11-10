@@ -32,38 +32,45 @@ export PERLDOC_PAGER='less -R'
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 # Publish the SSH AGENT SOCK
-export SSH_AUTH_SOCK=`ps -ef | grep ssh | grep agent | awk '{print $2}' | xargs lsof -p | grep Listeners | grep unix | awk '{print $8}' | head -n1`
+# disabled for now, looks like ssh-agent starts automatically
+#if [ ! $(ps -ef | grep -q "[s]sh-agent -l") ]; then
+#	launchctl start org.openbsd.ssh-agent
+#fi
+
+if [[ -z $SSH_AUTH_SOCK ]]; then
+	export SSH_AUTH_SOCK=`ps -ef | grep ssh | grep agent | awk '{print $2}' | xargs lsof -p | grep Listeners | grep unix | awk '{print $8}' | head -n1`
+fi
 
 export HISTSIZE=50000
 
 # Locate virtualenvwrapper binary
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export VENVWRAP=/usr/local/bin/virtualenvwrapper.sh
+	export VENVWRAP=/usr/local/bin/virtualenvwrapper.sh
 fi
 
 # setup virtualenvwrapper
 if [ ! -z $VENVWRAP ]; then
-    # virtualenvwrapper -------------------------------------------
-    # make sure env directory exists; else create it
-    export WORKON_HOME=$HOME/Projects/envs
-    [ -d $WORKON_HOME ] || mkdir -p $WORKON_HOME
-    source $VENVWRAP
+	# virtualenvwrapper -------------------------------------------
+	# make sure env directory exists; else create it
+	export WORKON_HOME=$HOME/Projects/envs
+	[ -d $WORKON_HOME ] || mkdir -p $WORKON_HOME
+	source $VENVWRAP
 
-    # virtualenv --------------------------------------------------
-    export VIRTUALENV_USE_DISTRIBUTE=true
+	# virtualenv --------------------------------------------------
+	export VIRTUALENV_USE_DISTRIBUTE=true
 
-    # pip ---------------------------------------------------------
-    export PIP_VIRTUALENV_BASE=$WORKON_HOME
-    export PIP_REQUIRE_VIRTUALENV=true
-    export PIP_RESPECT_VIRTUALENV=true
+	# pip ---------------------------------------------------------
+	export PIP_VIRTUALENV_BASE=$WORKON_HOME
+	export PIP_REQUIRE_VIRTUALENV=true
+	export PIP_RESPECT_VIRTUALENV=true
 fi
 
 if [ ! -z $TMUX ]; then
-    if tmux list-panes -F '#{session_name}' | sort -u | wc -l | grep -q "^\s*1$"; then
-	export TMUX_SESSION_NAME=$(tmux list-panes -F '#{session_name}')
-	if lsvirtualenv | grep -q "^${TMUX_SESSION_NAME}$"; then
-	    workon $TMUX_SESSION_NAME
+	if tmux list-panes -F '#{session_name}' | sort -u | wc -l | grep -q "^\s*1$"; then
+		export TMUX_SESSION_NAME=$(tmux list-panes -F '#{session_name}' | head -1)
+		if lsvirtualenv | grep -q "^${TMUX_SESSION_NAME}$"; then
+			workon $TMUX_SESSION_NAME
+		fi
 	fi
-    fi
 fi
 # ***************************************
