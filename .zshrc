@@ -9,7 +9,7 @@ ZSH_THEME="blinks-patch"
 
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git osx ant mercurial virutalenv brew docker aws pip sudo zsh-autosuggestions)
+plugins=(git osx ant mercurial virutalenv docker aws pip sudo zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
