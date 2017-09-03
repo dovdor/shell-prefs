@@ -16,6 +16,8 @@ source $ZSH/oh-my-zsh.sh
 
 # ***************************************
 # General setup
+# Path
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # set shell vars
 export EDITOR=vim
