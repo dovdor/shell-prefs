@@ -9,7 +9,7 @@ ZSH_THEME="blinks-patch"
 
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git osx ant mercurial virutalenv docker aws pip sudo zsh-autosuggestions)
+plugins=(git osx ant mercurial virutalenv docker aws pip sudo zsh-autosuggestions iterm2 vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
@@ -29,9 +29,6 @@ export LC_ALL=en_US.UTF-8
 # -R allows raw escape sequences but only for coloring
 export PAGER='less -R'
 export PERLDOC_PAGER='less -R'
-
-# setup brew python directory
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 # Publish the SSH AGENT SOCK
 # disabled for now, looks like ssh-agent starts automatically
