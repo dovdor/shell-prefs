@@ -21,17 +21,23 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # set shell vars
 export EDITOR=vim
-export LESS="--chop-long-lines --ignore-case"
-# no-init was added to support the damage done to the terminal by dog
-# export LESS="$LESS --no-init"
 
 # Set Locale
 export LC_ALL=en_US.UTF-8
 
+export LESS="--chop-long-lines --ignore-case"
+# no-init was added to support the damage done to the terminal by dog
+# export LESS="$LESS --no-init"
 # -R allows raw escape sequences but only for coloring
 # fixes git diff/git branch showing ANSI code gibberish
 export PAGER='less -R'
 export PERLDOC_PAGER='less -R'
+
+# doing it side by side on purpose as ohmyzsh sets it anyway
+# disabling the LESS env var and PAGER since both bring some issues
+# let's try without them
+unset LESS
+unset PAGER
 
 # Publish the SSH AGENT SOCK
 # disabled for now, looks like ssh-agent starts automatically
