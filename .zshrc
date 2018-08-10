@@ -6,6 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # blinks, gentoo, af-magic
 SOLARIZED_THEME=dark
 ZSH_THEME="blinks-patch"
+ZSH_CUSTOM="~/.oh-my-zsh-custom"
 
 DISABLE_AUTO_UPDATE="true"
 
