@@ -12,7 +12,7 @@ module.exports = {
         fontSize: 12,
 
         // font family with optional fallbacks
-        fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+        fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
         // default font weight: 'normal' or 'bold'
         fontWeight: 'normal',
@@ -129,6 +129,9 @@ module.exports = {
         },
 
         opacity: 0.90,
+
+        // Change the behaviour of modifier keys to act as meta key
+        modifierKeys: {altIsMeta: true},
     },
 
     // a list of plugins to fetch and install from npm
@@ -140,6 +143,7 @@ module.exports = {
     plugins: [
         'hyperterm-gruvbox',
         'hyper-opacity',
+        'hyper-font-ligatures',
     ],
 
     // in development, you can create a directory under
