@@ -14,6 +14,12 @@ function get_aws_log
 	aws ec2 get-console-output --instance-id $1 --output text --query Output
 }
 
+function ecr_list_tags
+{
+	repo=$1
+	aws ecr list-images --repository-name $1 --filter 'tagStatus=TAGGED' | jq '.[][].imageTag'
+}
+
 function realpath()
 {
 	[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
