@@ -10,7 +10,7 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git osx ant mercurial virutalenv docker aws pip sudo zsh-autosuggestions vi-mode)
+plugins=(git osx ant mercurial virtualenv docker aws pip sudo zsh-autosuggestions vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
