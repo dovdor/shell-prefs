@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 # General setup
 # Path
 export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # set shell vars
 export EDITOR=vim
