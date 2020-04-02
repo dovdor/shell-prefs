@@ -43,6 +43,8 @@ export PERLDOC_PAGER='less -R'
 unset LESS
 unset PAGER
 
+# Disable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
 # Publish the SSH AGENT SOCK
 # disabled for now, looks like ssh-agent starts automatically
 #if [ ! $(ps -ef | grep -q "[s]sh-agent -l") ]; then
