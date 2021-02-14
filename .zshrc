@@ -21,11 +21,13 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/node@12/bin:$PATH"
+# enforce python 3.9
+export PATH="/usr/local/opt/python@3.9/libexec/bin:/usr/local/opt/python@3.9/bin:$PATH"
 
 export GOBIN="$HOME/.go/bin"
 
