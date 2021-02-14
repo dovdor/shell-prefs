@@ -65,9 +65,16 @@ fi
 
 export HISTSIZE=50000
 
+# fzf setup
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 # Locate virtualenvwrapper binary
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 	export VENVWRAP=/usr/local/bin/virtualenvwrapper.sh
+	export VIRTUALENVWRAPPER_PYTHON=$(which python)
 fi
 
 # setup virtualenvwrapper
