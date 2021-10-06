@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 13,
 
     // font family with optional fallbacks
     fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -162,6 +162,11 @@ module.exports = {
     'hyperterm-gruvbox',
     'hyper-opacity',
     'hyper-font-ligatures',
+    // 'hyper-search',
+    'hyper-highlight-active-pane',
+    'hyper-broadcast',
+    'hyperterm-paste',
+    'hyper-font-smoothing',
   ],
 
   // in development, you can create a directory under
@@ -170,6 +175,7 @@ module.exports = {
   localPlugins: [],
 
   keymaps: {
+    'editor:break': 'esc'
   },
 };
 
