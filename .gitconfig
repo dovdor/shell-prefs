@@ -1,0 +1,31 @@
+[core]
+	excludesfile = ~/.gitignore_global
+[color]
+	ui = auto
+[alias]
+	# <author> <subject in white> <hash>
+	# Must escape " as shell parses them out
+	oneline = log --pretty=format:\"%an %C(white)%s%Creset %H\"
+	masterdiff = diff master..HEAD
+[push]
+	default = simple
+	gpgsign = if-asked
+[pull]
+	ff = only
+[diff]
+	tool = opendiff
+[difftool]
+	prompt = false
+[user]
+	name = dov
+	email = ddorin@salesforce.com
+	signingkey = 576CD50D0AAACCC7
+[gpg]
+	program = /usr/local/bin/gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
