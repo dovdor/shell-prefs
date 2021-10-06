@@ -59,6 +59,9 @@ export HOMEBREW_NO_ANALYTICS=1
 #	launchctl start org.openbsd.ssh-agent
 #fi
 
+# turn off kubectl prompt by default
+export ZPROMPT_KPS1=no
+
 if [[ -z $SSH_AUTH_SOCK ]]; then
 	export SSH_AUTH_SOCK=`ps -ef | grep ssh | grep agent | awk '{print $2}' | xargs lsof -p | grep Listeners | grep unix | awk '{print $8}' | head -n1`
 fi
