@@ -66,7 +66,8 @@ if [[ -z $SSH_AUTH_SOCK ]]; then
 	export SSH_AUTH_SOCK=`ps -ef | grep ssh | grep agent | awk '{print $2}' | xargs lsof -p | grep Listeners | grep unix | awk '{print $8}' | head -n1`
 fi
 
-export HISTSIZE=50000
+export HISTSIZE=10000000
+export SAVEHIST=$HISTSIZE
 
 # fzf setup
 if type rg &> /dev/null; then
