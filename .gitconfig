@@ -19,7 +19,7 @@
 [user]
 	name = dov
 	email = ddorin@salesforce.com
-	signingkey = 576CD50D0AAACCC7
+	signingkey = 716642F4B6759412 # 576CD50D0AAACCC7
 [gpg]
 	program = /usr/local/bin/gpg
 [filter "lfs"]
