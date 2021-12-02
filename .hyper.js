@@ -149,7 +149,7 @@ module.exports = {
     modifierKeys: {altIsMeta: true},
 
     // The number of rows to be persisted in terminal buffer for scrolling
-    scrollback: 5000,
+    scrollback: 50000,
   },
 
   // a list of plugins to fetch and install from npm

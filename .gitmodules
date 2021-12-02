@@ -4,3 +4,6 @@
 [submodule ".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
 	path = .oh-my-zsh-custom/plugins/zsh-autosuggestions
 	url = git@github-personal:zsh-users/zsh-autosuggestions.git
+[submodule ".oh-my-zsh-custom/plugins/zsh-vi-mode"]
+	path = .oh-my-zsh-custom/plugins/zsh-vi-mode
+	url = github-personal:jeffreytse/zsh-vi-mode.git
