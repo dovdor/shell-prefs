@@ -11,7 +11,7 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 DISABLE_AUTO_UPDATE="true"
 ZVM_VI_ESCAPE_BINDKEY=jk
 
-plugins=(git osx ant virtualenv docker aws pip sudo zsh-autosuggestions zsh-vi-mode autojump fzf ripgrep kubectl kube-ps1)
+plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions zsh-vi-mode autojump fzf ripgrep kubectl kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
