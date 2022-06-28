@@ -10,6 +10,7 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 
 DISABLE_AUTO_UPDATE="true"
 ZVM_VI_ESCAPE_BINDKEY=jk
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions zsh-vi-mode autojump fzf ripgrep kubectl kube-ps1)
 
@@ -29,6 +30,8 @@ export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/node@12/bin:$PATH"
 # enforce python 3.9
 export PATH="/usr/local/opt/python@3.9/libexec/bin:/usr/local/opt/python@3.9/bin:$PATH"
+
+export PATH="$HOME/Projects/hawking/pe-scripts/bin:$PATH"
 
 export GOBIN="$HOME/.go/bin"
 
