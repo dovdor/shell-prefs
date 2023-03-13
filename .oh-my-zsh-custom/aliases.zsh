@@ -26,8 +26,5 @@ alias p4commit='p4 submit $PWD/...'
 alias p4resolve='p4 resolve -as $PWD/...'
 alias p4changes='p4 changes $PWD/... | head -n 10'
 
-# undo some lib/aliases
-unalias afind
-
 alias inkscape=/Applications/Inkscape.app/Contents/MacOS/Inkscape
 alias gimp=/Applications/GIMP.app/Contents/MacOS/Gimp
