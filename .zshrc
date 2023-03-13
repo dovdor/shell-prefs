@@ -9,12 +9,25 @@ ZSH_THEME="blinks-patch"
 ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 
 DISABLE_AUTO_UPDATE="true"
-ZVM_VI_ESCAPE_BINDKEY=jk
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-FZF_BASE="/opt/homebrew/opt/fzf"
+###########################
+# zsh-vi-mode setup
+function zvm_config() {
+    ZVM_VI_ESCAPE_BINDKEY=jk
+    ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+}
 
-plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions zsh-vi-mode autojump fzf ripgrep kubectl kube-ps1)
+function post_zvm_init() {
+    # fzf plugin clashes with zsh-vi-mode, so setting up fzf manually
+    fzf_root="$(brew --prefix fzf 2>/dev/null)"
+    [ -d "$fzf_root" ] || echo "fzf not installed"
+    fzf_shell="$fzf_root/shell"
+    [ -d "$fzf_shell" ] && source "$fzf_shell/completion.zsh" && source "$fzf_shell/key-bindings.zsh"
+}
+zvm_after_init_commands=(post_zvm_init)
+###########################
+
+plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump ripgrep kubectl kube-ps1 zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
