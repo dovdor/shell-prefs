@@ -20,16 +20,19 @@ source $ZSH/oh-my-zsh.sh
 # ***************************************
 # General setup
 # Path
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-# enforce python 3.9
-export PATH="/usr/local/opt/python@3.9/libexec/bin:/usr/local/opt/python@3.9/bin:$PATH"
+# Add homebrew`
+export PATH="/opt/homebrew/bin:$PATH"
+
+# export PATH="/usr/local/opt/curl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
+# export PATH="/usr/local/opt/sqlite/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/opt/ncurses/bin:$PATH"
+# export PATH="/usr/local/opt/node@12/bin:$PATH"
+# enforce python 3.11
+export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 
 export PATH="$HOME/Projects/hawking/pe-scripts/bin:$PATH"
 
@@ -79,9 +82,16 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+###############
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+virtualenvwrapper_path="/opt/homebrew/bin/virtualenvwrapper.sh"
 # Locate virtualenvwrapper binary
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-	export VENVWRAP=/usr/local/bin/virtualenvwrapper.sh
+if [ -f $virtualenvwrapper_path ]; then
+	export VENVWRAP=$virtualenvwrapper_path
 	export VIRTUALENVWRAPPER_PYTHON=$(which python)
 fi
 
