@@ -19,9 +19,9 @@
 [user]
 	name = dov
 	email = ddorin@salesforce.com
-	signingkey = 716642F4B6759412 # 576CD50D0AAACCC7
+	signingkey = 576CD50D0AAACCC7
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
