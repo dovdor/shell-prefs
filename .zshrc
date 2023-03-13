@@ -12,6 +12,8 @@ DISABLE_AUTO_UPDATE="true"
 ZVM_VI_ESCAPE_BINDKEY=jk
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
+FZF_BASE="/opt/homebrew/opt/fzf"
+
 plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions zsh-vi-mode autojump fzf ripgrep kubectl kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
@@ -38,6 +40,9 @@ export PATH="$HOME/Projects/hawking/pe-scripts/bin:$PATH"
 
 export GOBIN="$HOME/.go/bin"
 
+# Local additions
+export PATH="$PATH:$HOME/bin"
+
 # set shell vars
 export EDITOR=vim
 
@@ -55,8 +60,8 @@ export PERLDOC_PAGER='less -R'
 # doing it side by side on purpose as ohmyzsh sets it anyway
 # disabling the LESS env var and PAGER since both bring some issues
 # let's try without them
-unset LESS
-unset PAGER
+# unset LESS
+# unset PAGER
 
 # Disable Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
