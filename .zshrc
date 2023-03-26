@@ -27,7 +27,7 @@ function post_zvm_init() {
 zvm_after_init_commands=(post_zvm_init)
 ###########################
 
-plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump ripgrep kubectl kube-ps1 zsh-vi-mode)
+plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump ripgrep kubectl kube-ps1 zsh-vi-mode bgnotify-clone)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
