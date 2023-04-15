@@ -95,8 +95,10 @@ fi
 ###############
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if type pyenv > /dev/null; then
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
 
 virtualenvwrapper_path="/opt/homebrew/bin/virtualenvwrapper.sh"
 # Locate virtualenvwrapper binary
