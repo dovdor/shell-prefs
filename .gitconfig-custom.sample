@@ -1,0 +1,9 @@
+[user]
+  name = j
+  email = j@j.com
+  signingkey = j
+
+[commit]
+  gpgsign = true
+
+" vim: set filetype=gitconfig shiftwidth=4 softtabstop=4 expandtab:
