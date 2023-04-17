@@ -1,3 +1,25 @@
+function ask_gpt
+{
+    chatGPTCreds="~/.config/openai/credentials"
+    if ! type openai > /dev/null; then
+        echo openai is not installed, please run 'pip install openai'
+        return
+    fi
+
+    if ! -f "$chatGPTCreds"; then
+        echo credentials not found for openAI
+        return
+    fi
+
+    openai \
+        -k "$(cat ~/.config/openai/credentials)" \
+        api chat_completions.create \
+        -m "gpt-3.5-turbo" \
+        -n 1 \
+        -t 0.7 \
+        -g "user" "$@"
+    echo
+}
 function get_aws_log
 {
     aws=`which aws`
