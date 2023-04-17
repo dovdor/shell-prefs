@@ -6,7 +6,7 @@ function ask_gpt
         return
     fi
 
-    if ! -f "$chatGPTCreds"; then
+    if [ ! -f "$chatGPTCreds" ]; then
         echo credentials not found for openAI
         return
     fi
