@@ -6,4 +6,4 @@
 [commit]
   gpgsign = true
 
-" vim: set filetype=gitconfig shiftwidth=4 softtabstop=4 expandtab:
+# vim: set filetype=gitconfig shiftwidth=4 softtabstop=4 expandtab:
