@@ -97,6 +97,6 @@ function bgnotify {
 bgnotify_threshold=${bgnotify_threshold:-5}
 
 # commands that will not produce a notification
-bgnotify_exceptions=( "less" "vim" "ping" )
+bgnotify_exceptions=( "less" "vim" "ping" "workon" "man" )
 
 # vim: set softtabstop=2 shiftwidth=2 expandtab:
