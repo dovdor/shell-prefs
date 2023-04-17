@@ -12,5 +12,6 @@ brew install \
   trash \
   vim \
   zsh \
+  jq \
 
 ```
