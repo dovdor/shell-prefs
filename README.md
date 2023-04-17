@@ -15,3 +15,6 @@ brew install \
   jq \
 
 ```
+
+## git config
+Copy `./gitconfig-custom.sample` to `~/.gitconfig-custom` and update
