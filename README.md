@@ -9,10 +9,11 @@ brew install \
   autojump \
   fzf \
   git \
+  jq \
   trash \
   vim \
+  watch \
   zsh \
-  jq \
 
 ```
 
