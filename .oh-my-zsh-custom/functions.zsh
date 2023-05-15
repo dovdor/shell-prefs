@@ -1,6 +1,6 @@
 function ask_gpt
 {
-    chatGPTCreds="~/.config/openai/credentials"
+    chatGPTCreds="$HOME/.config/openai/credentials"
     if ! type openai > /dev/null; then
         echo openai is not installed, please run 'pip install openai'
         return
