@@ -66,17 +66,21 @@
       "style": "dark",
       "contrast": "hard"
     },
-    "opacity": 0.95,
+    "opacity": {
+      "focus": 0.85,
+      "blur": 0.6
+    },
     "modifierKeys": {
       "altIsMeta": true
     }
   },
   "plugins": [
-    "hyperterm-gruvbox",
-    "hyper-opacity",
     "hyper-highlight-active-pane",
+    "hyper-opacity",
+    "hyperterm-gruvbox",
     "hyperterm-paste"
   ],
   "localPlugins": [],
-  "keymaps": {}
+  "keymaps": {},
+  "comment": " vim: set shiftwidth=2 softtabstop=2 expandtab:"
 }
