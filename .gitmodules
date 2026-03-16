@@ -7,3 +7,6 @@
 [submodule ".oh-my-zsh-custom/plugins/zsh-vi-mode"]
 	path = .oh-my-zsh-custom/plugins/zsh-vi-mode
 	url = github-personal:jeffreytse/zsh-vi-mode.git
+[submodule ".oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh-custom/plugins/zsh-syntax-highlighting
+	url = git@github-personal:zsh-users/zsh-syntax-highlighting.git

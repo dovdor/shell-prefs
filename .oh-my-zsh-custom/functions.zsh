@@ -1,30 +1,3 @@
-function get_aws_log
-{
-    aws=`which aws`
-    if [[ ! -f $aws ]]; then
-        echo "can't find aws"
-        return 1
-    fi
-
-    if [[ "x$1" == "x" ]]; then
-        echo "usage: get_aws_log <instance-id>"
-        return 1
-    fi
-
-    aws ec2 get-console-output --instance-id $1 --output text --query Output
-}
-
-function ecr_list_tags
-{
-    repo=$1
-    aws ecr list-images --repository-name $1 --filter 'tagStatus=TAGGED' | jq '.[][].imageTag'
-}
-
-function realpath()
-{
-    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-}
-
 function cdrun()
 {
     dir=$1
@@ -52,4 +25,50 @@ function kube_ps1_off()
 {
     export ZPROMPT_KPS1=no
 }
+
+# AICT (AI Cost Tracker) prompt integration
+# Caches aict --json output every 5 minutes, sets AICT_PS1
+zmodload -F zsh/datetime b:strftime p:EPOCHSECONDS 2>/dev/null
+typeset -g _AICT_LAST_UPDATE=0
+typeset -g AICT_PS1=""
+
+function _aict_update()
+{
+    (( EPOCHSECONDS - _AICT_LAST_UPDATE < 300 )) && return
+
+    _AICT_LAST_UPDATE=$EPOCHSECONDS
+
+    if ! (( $+commands[aict] && $+commands[jq] )); then
+        AICT_PS1=""
+        return
+    fi
+
+    local json
+    json=$(aict --json 2>/dev/null) || { AICT_PS1=""; return; }
+
+    local parts=()
+    local name pct arrow
+    while IFS=$'\t' read -r name pct; do
+        [[ -z $name ]] && continue
+        case $name in
+            *[Cc]laude*) arrow="C";;
+            *[Cc]ursor*) arrow="R";;
+            *)           arrow="${name:0:1}";;
+        esac
+        if (( pct > 50 )); then
+            parts+=("${arrow}▲${pct}%")
+        else
+            parts+=("${arrow}▼${pct}%")
+        fi
+    done < <(echo "$json" | jq -r '.[] | [.name, (.remaining_percent | tostring)] | @tsv' 2>/dev/null)
+
+    if (( ${#parts[@]} > 0 )); then
+        AICT_PS1="${(j: :)parts}"
+    else
+        AICT_PS1=""
+    fi
+}
+
+precmd_functions+=(_aict_update)
+
 # vim: softtabstop=4 shiftwidth=4 expandtab

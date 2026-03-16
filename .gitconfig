@@ -6,7 +6,7 @@
     # <author> <subject in white> <hash>
     # Must escape " as shell parses them out
     oneline = log --pretty=format:\"%an %C(white)%s%Creset %H\"
-    masterdiff = diff master..HEAD
+    maindiff = diff main..HEAD
 [push]
     default = simple
     gpgsign = if-asked

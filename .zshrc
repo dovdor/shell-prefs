@@ -2,7 +2,7 @@
 # oh-my-zsh settings
 export ZSH=$HOME/.oh-my-zsh
 
-# Themes I like: 
+# Themes I like:
 # blinks, gentoo, af-magic
 SOLARIZED_THEME=dark
 ZSH_THEME="blinks-patch"
@@ -31,28 +31,20 @@ zvm_after_init_commands=(post_zvm_init)
 bgnotify_threshold=7
 ###########################
 
-plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump kubectl kube-ps1 zsh-vi-mode bgnotify-clone brew)
+plugins=(git macos virtualenv docker aws pip sudo zsh-autosuggestions kubectl kube-ps1 zsh-vi-mode bgnotify-clone brew zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
 
 # ***************************************
 # General setup
+
 # Path
-# Add homebrew`
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-
-# enforce python 3.13
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
-
 export PATH="$HOME/Projects/hawking/pe-scripts/bin:$PATH"
-
 export GOBIN="$HOME/.go/bin"
-
-# Local additions
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 # set shell vars
 export EDITOR=vim
@@ -61,32 +53,17 @@ export EDITOR=vim
 export LC_ALL=en_US.UTF-8
 
 export LESS="--chop-long-lines --ignore-case"
-# no-init was added to support the damage done to the terminal by dog
-# export LESS="$LESS --no-init"
-# -R allows raw escape sequences but only for coloring
-# fixes git diff/git branch showing ANSI code gibberish
 export PAGER='less -R'
 export PERLDOC_PAGER='less -R'
 
-# doing it side by side on purpose as ohmyzsh sets it anyway
-# disabling the LESS env var and PAGER since both bring some issues
-# let's try without them
-# unset LESS
-# unset PAGER
-
 # Disable Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
-# Publish the SSH AGENT SOCK
-# disabled for now, looks like ssh-agent starts automatically
-#if [ ! $(ps -ef | grep -q "[s]sh-agent -l") ]; then
-#	launchctl start org.openbsd.ssh-agent
-#fi
 
 # turn off kubectl prompt by default
 export ZPROMPT_KPS1=no
 
 if [[ -z $SSH_AUTH_SOCK ]]; then
-	export SSH_AUTH_SOCK=`ps -ef | grep ssh | grep agent | awk '{print $2}' | xargs lsof -p | grep Listeners | grep unix | awk '{print $8}' | head -n1`
+    export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
 fi
 
 export HISTSIZE=10000000
@@ -97,14 +74,6 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border --preview="bat --color=always --theme gruvbox-dark"'
 fi
-
-###############
-# pyenv -- currently disabled
-# export PYENV_ROOT="$HOME/.pyenv"
-# if type pyenv > /dev/null; then
-  # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  # eval "$(pyenv init -)"
-# fi
 
 virtualenvwrapper_path="/opt/homebrew/bin/virtualenvwrapper.sh"
 # Locate virtualenvwrapper binary
@@ -130,17 +99,8 @@ if [ ! -z $VENVWRAP ]; then
 	export PIP_RESPECT_VIRTUALENV=true
 fi
 
-if [ ! -z $TMUX ]; then
-	if tmux list-panes -F '#{session_name}' | sort -u | wc -l | grep -q "^\s*1$"; then
-		export TMUX_SESSION_NAME=$(tmux list-panes -F '#{session_name}' | head -1)
-		if lsvirtualenv | grep -q "^${TMUX_SESSION_NAME}$"; then
-			workon $TMUX_SESSION_NAME
-		fi
-	fi
-fi
-
-# Added by dx-cli for Claude Code (native binary installation)
-export PATH="$HOME/.local/bin:$PATH"
+# zoxide (autojump replacement)
+eval "$(zoxide init zsh)"
 
 # Added by dx-cli for Claude Code CA certificates
-export NODE_EXTRA_CA_CERTS="/Users/ddorin/.claude/certs/salesforce-ca-bundle.pem"
+export NODE_EXTRA_CA_CERTS="$HOME/.claude/certs/salesforce-ca-bundle.pem"

@@ -2,7 +2,7 @@
 # Original Blinks theme is here: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/blinks.zsh-theme
 
 function _prompt_char() {
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "%{%F{blue}%}±%{%f%k%b%}"
   else
     echo ' '
@@ -28,4 +28,4 @@ PROMPT='%{%f%k%b%}
 $(kube_ps1_wrap) %{%K{${bkg}}%B%F{grey}%}$(virtualenv_prompt_info) %{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
 %{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} '
 
-RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%} $(vi_mode_prompt_info)'
+RPROMPT='${AICT_PS1:+%F{cyan}$AICT_PS1%f }!%{%B%F{cyan}%}%!%{%f%k%b%} $(vi_mode_prompt_info)'
