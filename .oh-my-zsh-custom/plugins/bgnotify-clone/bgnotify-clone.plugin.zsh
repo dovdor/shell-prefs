@@ -68,17 +68,15 @@ function bgnotify {
       iTerm.app) term_id='com.googlecode.iterm2' ;;
       Apple_Terminal) term_id='com.apple.terminal' ;;
       Hyper) term_id='co.zeit.hyper' ;;
+      vscode) term_id="$(osascript -e 'id of app "Cursor"')"
     esac
 
     if [[ -z "$term_id" ]]; then
       terminal-notifier -message "$2" -title "$1" &>/dev/null
     else
-      # both sender and activate don't work for hyper on Ventura (at least)
-      if [[ "$TERM_PROGRAM" == "Hyper" ]]; then
-        terminal-notifier -message "$2" -title "$1" -activate "$term_id" &>/dev/null
-      else
-        terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" &>/dev/null
-      fi
+      # sender is blocking on iterm2
+      # terminal-notifier -message "$2" -title "$1" -activate "$term_id" -sender "$term_id" &>/dev/null
+      terminal-notifier -message "$2" -title "$1" -activate "$term_id" &>/dev/null
     fi
   elif (( ${+commands[growlnotify]} )); then # macOS growl
     growlnotify -m "$1" "$2"
@@ -97,6 +95,6 @@ function bgnotify {
 bgnotify_threshold=${bgnotify_threshold:-5}
 
 # commands that will not produce a notification
-bgnotify_exceptions=( "less" "vim" "ping" "workon" "man" )
+bgnotify_exceptions=( "less" "vim" "ping" "workon" "man" "fzf" )
 
 # vim: set softtabstop=2 shiftwidth=2 expandtab:

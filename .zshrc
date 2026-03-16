@@ -13,7 +13,7 @@ DISABLE_AUTO_UPDATE="true"
 ###########################
 # zsh-vi-mode setup
 function zvm_config() {
-    ZVM_VI_ESCAPE_BINDKEY=jk
+    # ZVM_VI_ESCAPE_BINDKEY=jk
     ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 }
 
@@ -22,12 +22,16 @@ function post_zvm_init() {
     fzf_root="$(brew --prefix fzf 2>/dev/null)"
     [ -d "$fzf_root" ] || echo "fzf not installed"
     fzf_shell="$fzf_root/shell"
-    [ -d "$fzf_shell" ] && source "$fzf_shell/completion.zsh" && source "$fzf_shell/key-bindings.zsh"
+    [ -d "$fzf_shell" ] && source <(fzf --zsh)
 }
 zvm_after_init_commands=(post_zvm_init)
 ###########################
+# bgnotify-clone setup
+# set timeout to 7s
+bgnotify_threshold=7
+###########################
 
-plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump ripgrep kubectl kube-ps1 zsh-vi-mode bgnotify-clone)
+plugins=(git macos ant virtualenv docker aws pip sudo zsh-autosuggestions autojump kubectl kube-ps1 zsh-vi-mode bgnotify-clone brew)
 
 source $ZSH/oh-my-zsh.sh
 # ***************************************
@@ -37,9 +41,10 @@ source $ZSH/oh-my-zsh.sh
 # Path
 # Add homebrew`
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
-# enforce python 3.11
-export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
+# enforce python 3.13
+export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 
 export PATH="$HOME/Projects/hawking/pe-scripts/bin:$PATH"
 
@@ -47,6 +52,7 @@ export GOBIN="$HOME/.go/bin"
 
 # Local additions
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # set shell vars
 export EDITOR=vim
@@ -89,16 +95,16 @@ export SAVEHIST=$HISTSIZE
 # fzf setup
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border --preview="bat --color=always --theme gruvbox-dark"'
 fi
 
 ###############
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-if type pyenv > /dev/null; then
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
+# pyenv -- currently disabled
+# export PYENV_ROOT="$HOME/.pyenv"
+# if type pyenv > /dev/null; then
+  # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  # eval "$(pyenv init -)"
+# fi
 
 virtualenvwrapper_path="/opt/homebrew/bin/virtualenvwrapper.sh"
 # Locate virtualenvwrapper binary
@@ -132,3 +138,9 @@ if [ ! -z $TMUX ]; then
 		fi
 	fi
 fi
+
+# Added by dx-cli for Claude Code (native binary installation)
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by dx-cli for Claude Code CA certificates
+export NODE_EXTRA_CA_CERTS="/Users/ddorin/.claude/certs/salesforce-ca-bundle.pem"

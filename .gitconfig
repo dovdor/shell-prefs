@@ -10,6 +10,7 @@
 [push]
     default = simple
     gpgsign = if-asked
+    autoSetupRemote = true
 [pull]
     ff = only
 [diff]
@@ -27,3 +28,7 @@
     path = ~/.gitconfig-custom
 
 # vim: set shiftwidth=4 softtabstop=4 expandtab:
+[init]
+	defaultBranch = main
+[url "git@git.soma.salesforce.com:"]
+	insteadOf = https://git.soma.salesforce.com/
