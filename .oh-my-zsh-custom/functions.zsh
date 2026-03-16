@@ -60,7 +60,7 @@ function _aict_update()
         else
             parts+=("${arrow}▼${pct}%")
         fi
-    done < <(echo "$json" | jq -r '.[] | [.name, (.remaining_percent | tostring)] | @tsv' 2>/dev/null)
+    done < <(echo "$json" | jq -r '.providers[] | select(.dataSource == "live") | [.name, (.percentRemaining | tostring)] | @tsv' 2>/dev/null)
 
     if (( ${#parts[@]} > 0 )); then
         AICT_PS1="%F{cyan}${(j: :)parts}%f "
