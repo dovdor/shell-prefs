@@ -63,7 +63,7 @@ function _aict_update()
     done < <(echo "$json" | jq -r '.[] | [.name, (.remaining_percent | tostring)] | @tsv' 2>/dev/null)
 
     if (( ${#parts[@]} > 0 )); then
-        AICT_PS1="${(j: :)parts}"
+        AICT_PS1="%F{cyan}${(j: :)parts}%f "
     else
         AICT_PS1=""
     fi

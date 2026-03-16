@@ -100,7 +100,7 @@ if [ ! -z $VENVWRAP ]; then
 fi
 
 # zoxide (autojump replacement)
-eval "$(zoxide init zsh)"
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 # Added by dx-cli for Claude Code CA certificates
 export NODE_EXTRA_CA_CERTS="$HOME/.claude/certs/salesforce-ca-bundle.pem"
