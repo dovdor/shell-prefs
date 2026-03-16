@@ -26,9 +26,7 @@
     required = true
 [include]
     path = ~/.gitconfig-custom
+[init]
+    defaultBranch = main
 
 # vim: set shiftwidth=4 softtabstop=4 expandtab:
-[init]
-	defaultBranch = main
-[url "git@git.soma.salesforce.com:"]
-	insteadOf = https://git.soma.salesforce.com/
