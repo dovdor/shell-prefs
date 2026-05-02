@@ -101,6 +101,5 @@ fi
 
 # zoxide (autojump replacement)
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
-
-# Added by dx-cli for Claude Code CA certificates
-export NODE_EXTRA_CA_CERTS="$HOME/.claude/certs/salesforce-ca-bundle.pem"
+# Source work-specific overrides if present
+[[ -f ~/Projects/shell-prefs-sfdc/sfdc.zsh ]] && source ~/Projects/shell-prefs-sfdc/sfdc.zsh
